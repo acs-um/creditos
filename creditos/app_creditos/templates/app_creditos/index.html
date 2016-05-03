@@ -8,9 +8,21 @@
 
 <h1>Carreras</h1>
 <a href="{% url 'app_creditos:carrera_new' %}">Nueva Carrera</a>
+
+{% if mensaje %}
+    <b>{{mensaje}}</b>
+    <p>
+{% endif %}
+
 <ul>
 {% for carrera in object_list %}
-    <li>{{ carrera.nombre }} -- {{carrera.secretario }} <a href=" {% url 'app_creditos:carrera_edit' carrera.pk %}">edit</a> </li>
+    {% if carrera.estado == True %}
+        <li>{{ carrera.nombre }} -- {{carrera.secretario }}
+            <a href=" {% url 'app_creditos:carrera_edit' carrera.pk %}">editar</a>
+            <a href=" {% url 'app_creditos:carrera_delete' carrera.pk %}">borrar</a>
+            <a href=" {% url 'app_creditos:carrera_disable' carrera.pk %}">deshabilitar</a>
+        </li>
+    {% endif %}
 {% endfor %}
 </ul>
 

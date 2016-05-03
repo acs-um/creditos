@@ -7,6 +7,7 @@ class Carrera(models.Model):
     nombre = models.CharField("nombre", max_length=255)
     años_de_duracion = models.PositiveSmallIntegerField("años de duracion")
     secretario = models.ForeignKey("Secretario", verbose_name="Secretario", related_name="Carreras")
+    estado = models.BooleanField(default=True)
 
     class Meta:  # define los metadatos del modelo. como se va a mostrar, como se ordena, etc
         verbose_name = "carrera"
