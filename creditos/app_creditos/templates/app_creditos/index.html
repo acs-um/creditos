@@ -7,13 +7,12 @@
 <body>
 
 <h1>Carreras</h1>
-
+<a href="{% url 'app_creditos:carrera_new' %}">Nueva Carrera</a>
 <ul>
 {% for carrera in object_list %}
-    <li>{{ carrera.nombre }} -- {{carrera.secretario }} </li>
+    <li>{{ carrera.nombre }} -- {{carrera.secretario }} <a href=" {% url 'app_creditos:carrera_edit' carrera.pk %}">edit</a> </li>
 {% endfor %}
 </ul>
-
 
 </body>
 </html>
