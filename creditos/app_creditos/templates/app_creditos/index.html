@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+          crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>carreras</title>
 </head>
 <body>
 
 <h1>Carreras</h1>
-<a href="{% url 'app_creditos:carrera_new' %}">Nueva Carrera</a>
+<a href="{% url 'app_creditos:carrera_new' %}">Nueva carrera</a>
+<br>
+<a href="{% url 'app_creditos:alumno_new' %}">Nuevo alumno</a>
+<br>
+<a href="{% url 'app_creditos:alumno_list' %}">alumnos</a>
+<br>
+<a href="{% url 'app_creditos:secretario_list' %}">Secretarios</a>
+
 
 {% if mensaje %}
     <b>{{mensaje}}</b>
@@ -15,9 +26,10 @@
 {% endif %}
 
 <ul>
-{% for carrera in object_list %}
+{% for carrera in carreras %}
     {% if carrera.estado == True %}
-        <li>{{ carrera.nombre }} -- {{carrera.secretario }}
+        <li>carrera: {{ carrera.nombre }} -- secretario: {{carrera.secretario }}
+            -- cantidad de alumnos: {{ carrera.cantidad_alumnos }}
             <a href=" {% url 'app_creditos:carrera_edit' carrera.pk %}">editar</a>
             <a href=" {% url 'app_creditos:carrera_delete' carrera.pk %}">borrar</a>
             <a href=" {% url 'app_creditos:carrera_disable' carrera.pk %}">deshabilitar</a>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>listar alumnos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<h1>Alumnos</h1>
+
+<ul>
+{% for alumno in object_list %}
+        <li>{{ alumno.nombre }} -- {{alumno.carrera }}
+            <a href=" {% url 'app_creditos:alumno_edit' alumno.pk %}">editar</a>
+            <a href=" {% url 'app_creditos:alumno_delete' alumno.pk %}">borrar</a>
+            <a href=" {% url 'app_creditos:alumno_disable' alumno.pk %}">deshabilitar</a>
+        </li>
+{% endfor %}
+</ul>
+
+<br>
+<br>
+
+<a href=" {% url 'app_creditos:index' %} "> inicio</a>
+
+</body>
+</html>

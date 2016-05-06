@@ -1,15 +1,27 @@
 from django.views import generic
 from django.shortcuts import redirect
-from .forms import CarreraForm
+from .forms import *
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 
-from .models import Carrera
+from .models import *
 
+
+# CARRERAS
 
 class IndexView(generic.ListView):
     template_name = 'app_creditos/index.html'
     model = Carrera
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(IndexView, self).get_context_data(*args, **kwargs)
+
+        # calculo de cantidad de alumnos
+        carreras = Carrera.objects.all()
+        for carrera in carreras:
+            carrera.cantidad_alumnos = carrera.Alumnos.count()
+        context['carreras'] = carreras
+        return context
 
 
 def carrera_new(request):
@@ -47,3 +59,90 @@ def carrera_disable(request, pk):
     carr.estado = False
     carr.save()
     return redirect(reverse('app_creditos:index'))
+
+
+# ALUMNOS
+
+class AlumnoView(generic.ListView):
+    template_name = 'app_creditos/alumno_list.html'
+    model = Alumno
+
+
+def alumno_new(request):
+    if request.method == "POST":
+        form = AlumnoForm(request.POST)
+        if form.is_valid():
+            alumno = form.save()
+            alumno.save()
+            return redirect(reverse('app_creditos:alumno_list'))
+    else:
+        form = AlumnoForm()
+    return render(request, 'app_creditos/alumno_new.html', {'form': form})
+
+
+def alumno_edit(request, pk):
+    carr = Alumno.objects.get(pk=pk)
+
+    if request.method == "POST":
+        form = AlumnoForm(request.POST, instance=carr)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('app_creditos:alumno_list'))
+    else:
+        form = AlumnoForm(instance=carr)
+    return render(request, 'app_creditos/alumno_new.html', {'form': form})
+
+
+def alumno_delete(request, pk):
+    Alumno.objects.get(pk=pk).delete()
+    return redirect(reverse('app_creditos:alumno_list'))
+
+
+def alumno_disable(request, pk):
+    carr = Alumno.objects.get(pk=pk)
+    carr.estado = False
+    carr.save()
+    return redirect(reverse('app_creditos:alumno_list'))
+
+
+# SECRETARIOS
+
+class SecretarioView(generic.ListView):
+    template_name = 'app_creditos/secretario_list.html'
+    model = Secretario
+
+
+def secretario_new(request):
+    if request.method == "POST":
+        form = SecretarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('app_creditos:secretario_list'))
+    else:
+        form = SecretarioForm()
+    return render(request, 'app_creditos/secretario_new.html', {'form': form})
+
+
+def secretario_edit(request, pk):
+    carr = Secretario.objects.get(pk=pk)
+
+    if request.method == "POST":
+        form = SecretarioForm(request.POST, instance=carr)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('app_creditos:secretario_list'))
+    else:
+        form = SecretarioForm(instance=carr)
+    return render(request, 'app_creditos/secretario_new.html', {'form': form})
+
+
+def secretario_delete(request, pk):
+    Secretario.objects.get(pk=pk).delete()
+    return redirect(reverse('app_creditos:secretario_list'))
+
+
+def secretario_disable(request, pk):
+    carr = Secretario.objects.get(pk=pk)
+    carr.estado = False
+    carr.save()
+    return redirect(reverse('app_creditos:secretario_list'))
