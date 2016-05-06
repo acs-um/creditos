@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Carrera(models.Model):
-    nombre = models.CharField("nombre", max_length=255)
+    nombre = models.CharField("nombre", max_length=255, unique=True)
     años_de_duracion = models.PositiveSmallIntegerField("años de duracion")
     secretario = models.ForeignKey("Secretario", verbose_name="Secretario", related_name="Carreras")
     estado = models.BooleanField(default=True)
@@ -47,15 +47,15 @@ class Alumno(models.Model):
         ordering = ['nombre', ]
 
     def __str__(self):
-        return self.nombre
+        return '%s %s' %(self.nombre, self.apellido)
 
 
 class Materia(models.Model):
     codigo = models.IntegerField("codigo", primary_key=True)
-    nombre = models.CharField("nombre", max_length=255)
+    nombre = models.CharField("nombre", max_length=255, unique=True)
     creditos = models.PositiveSmallIntegerField("creditos")
     año = models.PositiveSmallIntegerField("año")
-#    correlativas = models.ForeignKey("Materia", )
+    correlativas = models.ManyToManyField("Materia", verbose_name="correlativas", related_name="correlacion", blank=True)
 
     class Meta:
         verbose_name = "materia"
@@ -64,3 +64,4 @@ class Materia(models.Model):
 
     def __str__(self):
         return self.nombre
+

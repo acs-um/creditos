@@ -182,3 +182,11 @@ def materia_edit(request, pk):
 def materia_delete(request, pk):
     Materia.objects.get(pk=pk).delete()
     return redirect(reverse('app_creditos:materia_list'))
+
+
+def materia_detail(request, pk):
+    materia = Materia.objects.get(pk=pk)
+    correlativas = materia.correlativas.all()
+
+    return render(request, 'app_creditos/materia_detail.html', {'correlativas': correlativas,
+                                                                'materia': materia})

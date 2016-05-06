@@ -13,8 +13,8 @@
 
 <ul>
 {% for m in object_list %}
-        <li>codigo: {{ m.codigo }} -- Nombre: {{ m.nombre }} -- Creditos: {{ m.creditos }} -- De {{ m.año }} año --
-            correlativas:
+        <li>codigo: {{ m.codigo }} -- Nombre: {{ m.nombre }} -- Creditos: {{ m.creditos }} -- De {{ m.año }} año
+            <a href=" {% url 'app_creditos:materia_detail' m.pk %}">correlativas</a>
             <a href=" {% url 'app_creditos:materia_edit' m.pk %}">editar</a>
             <a href=" {% url 'app_creditos:materia_delete' m.pk %}">borrar</a>
         </li>

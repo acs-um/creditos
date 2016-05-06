@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Detalle de {{ materia.nombre }} </h1>
+
+correlativas:
+{% if correlativas %}
+    <ul>
+    {% for correlativa in correlativas %}
+            <li> {{ correlativa.nombre }}
+            </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <h2>no tiene correlativas</h2>
+{% endif %}
+<br>
+<br>
+
+<a href=" {% url 'app_creditos:index' %} "> inicio</a>
+<br>
+<a href=" {% url 'app_creditos:materia_list' %} "> volver</a>
+
+</body>
+</html>

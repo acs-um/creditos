@@ -31,4 +31,6 @@ urlpatterns = [
     url(r'^materia/list/$', views.MateriaView.as_view(), name='materia_list'),
     url(r'^materia/(?P<pk>\d+)/$', views.materia_edit, name='materia_edit'),
     url(r'^materia/delete/(?P<pk>\d+)/$', views.materia_delete, name='materia_delete'),
+    url(r'^materia/detail/(?P<pk>\d+)/$', views.materia_detail, name='materia_detail'),
+
 ]
