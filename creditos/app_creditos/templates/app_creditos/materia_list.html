@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Materias</h1>
+
+<br>
+<a href="{% url 'app_creditos:materia_new' %}">Nuev materia</a>
+
+<ul>
+{% for m in object_list %}
+        <li>codigo: {{ m.codigo }} -- Nombre: {{ m.nombre }} -- Creditos: {{ m.creditos }} -- De {{ m.año }} año --
+            correlativas:
+            <a href=" {% url 'app_creditos:materia_edit' m.pk %}">editar</a>
+            <a href=" {% url 'app_creditos:materia_delete' m.pk %}">borrar</a>
+        </li>
+{% endfor %}
+</ul>
+
+<br>
+<br>
+
+<a href=" {% url 'app_creditos:index' %} "> inicio</a>
+
+</body>
+</html>

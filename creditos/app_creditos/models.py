@@ -48,3 +48,19 @@ class Alumno(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class Materia(models.Model):
+    codigo = models.IntegerField("codigo", primary_key=True)
+    nombre = models.CharField("nombre", max_length=255)
+    creditos = models.PositiveSmallIntegerField("creditos")
+    año = models.PositiveSmallIntegerField("año")
+#    correlativas = models.ForeignKey("Materia", )
+
+    class Meta:
+        verbose_name = "materia"
+        verbose_name_plural = "materias"
+        ordering = ['nombre', ]
+
+    def __str__(self):
+        return self.nombre

@@ -146,3 +146,39 @@ def secretario_disable(request, pk):
     carr.estado = False
     carr.save()
     return redirect(reverse('app_creditos:secretario_list'))
+
+
+# MATERIAS
+
+class MateriaView(generic.ListView):
+    template_name = 'app_creditos/materia_list.html'
+    model = Materia
+
+
+def materia_new(request):
+    if request.method == "POST":
+        form = MateriaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('app_creditos:materia_list'))
+    else:
+        form = MateriaForm()
+    return render(request, 'app_creditos/materia_new.html', {'form': form})
+
+
+def materia_edit(request, pk):
+    carr = Materia.objects.get(pk=pk)
+
+    if request.method == "POST":
+        form = MateriaForm(request.POST, instance=carr)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('app_creditos:materia_list'))
+    else:
+        form = MateriaForm(instance=carr)
+    return render(request, 'app_creditos/materia_new.html', {'form': form})
+
+
+def materia_delete(request, pk):
+    Materia.objects.get(pk=pk).delete()
+    return redirect(reverse('app_creditos:materia_list'))

@@ -26,4 +26,9 @@ urlpatterns = [
     url(r'^secretario/delete/(?P<pk>\d+)/$', views.secretario_delete, name='secretario_delete'),
     url(r'^secretario/disable/(?P<pk>\d+)/$', views.secretario_disable, name='secretario_disable'),
 
+    # ABM materias
+    url(r'^materia/new/$', views.materia_new, name='materia_new'),
+    url(r'^materia/list/$', views.MateriaView.as_view(), name='materia_list'),
+    url(r'^materia/(?P<pk>\d+)/$', views.materia_edit, name='materia_edit'),
+    url(r'^materia/delete/(?P<pk>\d+)/$', views.materia_delete, name='materia_delete'),
 ]
