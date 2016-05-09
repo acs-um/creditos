@@ -31,7 +31,7 @@
 {% for carrera in carreras %}
     {% if carrera.estado == True %}
         <li>carrera: {{ carrera.nombre }} -- secretario: {{carrera.secretario }}
-            -- cantidad de alumnos: {{ carrera.cantidad_alumnos }}
+            -- cantidad de alumnos: {{ carrera.cantidad_alumnos }} -- estado: {{ carrera.estado }}
             <a href=" {% url 'app_creditos:carrera_edit' carrera.pk %}">editar</a>
             <a href=" {% url 'app_creditos:carrera_delete' carrera.pk %}">borrar</a>
             <a href=" {% url 'app_creditos:carrera_disable' carrera.pk %}">deshabilitar</a>

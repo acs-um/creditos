@@ -190,3 +190,10 @@ def materia_detail(request, pk):
 
     return render(request, 'app_creditos/materia_detail.html', {'correlativas': correlativas,
                                                                 'materia': materia})
+
+
+def materia_disable(request, pk):
+    carr = Materia.objects.get(pk=pk)
+    carr.estado = False
+    carr.save()
+    return redirect(reverse('app_creditos:materia_list'))

@@ -32,5 +32,7 @@ urlpatterns = [
     url(r'^materia/(?P<pk>\d+)/$', views.materia_edit, name='materia_edit'),
     url(r'^materia/delete/(?P<pk>\d+)/$', views.materia_delete, name='materia_delete'),
     url(r'^materia/detail/(?P<pk>\d+)/$', views.materia_detail, name='materia_detail'),
+    url(r'^materia/disable/(?P<pk>\d+)/$', views.materia_disable, name='materia_disable'),
+
 
 ]

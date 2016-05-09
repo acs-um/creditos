@@ -56,6 +56,7 @@ class Materia(models.Model):
     creditos = models.PositiveSmallIntegerField("creditos")
     año = models.PositiveSmallIntegerField("año")
     correlativas = models.ManyToManyField("Materia", verbose_name="correlativas", related_name="correlacion", blank=True)
+    estado = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "materia"

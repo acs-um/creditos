@@ -13,7 +13,7 @@
 
 <ul>
 {% for alumno in object_list %}
-        <li>{{ alumno.nombre }}, {{ alumno.apellido }} -- {{alumno.carrera }}
+        <li>{{ alumno.nombre }}, {{ alumno.apellido }} -- {{alumno.carrera }} -- {{ alumno.estado }}
             <a href=" {% url 'app_creditos:alumno_edit' alumno.pk %}">editar</a>
             <a href=" {% url 'app_creditos:alumno_delete' alumno.pk %}">borrar</a>
             <a href=" {% url 'app_creditos:alumno_disable' alumno.pk %}">deshabilitar</a>
