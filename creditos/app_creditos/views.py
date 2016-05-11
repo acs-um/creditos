@@ -109,7 +109,10 @@ def alumno_disable(request, pk):
 
 class SecretarioView(generic.ListView):
     template_name = 'app_creditos/secretario_list.html'
-    model = Secretario
+    # model = Secretario
+
+    def get_queryset(self):
+        return Secretario.objects.filter(estado=True)
 
 
 def secretario_new(request):
