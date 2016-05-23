@@ -2,12 +2,6 @@ language: python
 python:
   - "3.4"
 
-#env:
-  #- CFLAGS="-O0"
-
-# before_install:
-#   - sudo apt-get install -qq libxml2-dev libxslt-dev postgresql-contrib
-
 # command to install dependencies
 install:
   - "pip install -r requirements.txt"
