@@ -8,7 +8,6 @@ class Carrera(models.Model):
     años_de_duracion = models.PositiveSmallIntegerField("años de duracion")
     secretario = models.ForeignKey("Secretario", verbose_name="Secretario", related_name="Carreras")
     estado = models.BooleanField(default=True)
-    cantidad_alumnos = models.IntegerField(null=True)
 
     class Meta:  # define los metadatos del modelo. como se va a mostrar, como se ordena, etc
         verbose_name = "carrera"
@@ -17,6 +16,10 @@ class Carrera(models.Model):
 
     def __str__(self):
         return self.nombre
+
+    @property
+    def cantidad_alumnos(self):
+        return self.Alumnos.count()
 
 
 class Secretario(models.Model):

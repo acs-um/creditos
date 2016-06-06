@@ -12,16 +12,7 @@ from .models import *
 class IndexView(generic.ListView):
     template_name = 'app_creditos/index.html'
     model = Carrera
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(IndexView, self).get_context_data(*args, **kwargs)
-
-        # calculo de cantidad de alumnos
-        carreras = Carrera.objects.all()
-        for carrera in carreras:
-            carrera.cantidad_alumnos = carrera.Alumnos.count()
-        context['carreras'] = carreras
-        return context
+    context_object_name = 'carreras'
 
 
 def carrera_new(request):
