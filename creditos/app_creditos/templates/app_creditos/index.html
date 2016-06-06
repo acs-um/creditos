@@ -6,11 +6,13 @@
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
           crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>carreras</title>
+    <title>{%block title%}{% endblock %} - Sistema de créditos - UM</title>
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
 
 <h1>Carreras</h1>
+{% block sidebar %}
 <a href="{% url 'app_creditos:carrera_new' %}">Nueva carrera</a>
 <br>
 <a href="{% url 'app_creditos:alumno_new' %}">Nuevo alumno</a>
@@ -20,25 +22,29 @@
 <a href="{% url 'app_creditos:secretario_list' %}">Secretarios</a>
 <br>
 <a href="{% url 'app_creditos:materia_list' %}">Materias</a>
-
+{% endblock %}
 
 {% if mensaje %}
     <b>{{mensaje}}</b>
     <p>
 {% endif %}
 
-<ul>
-{% for carrera in carreras %}
-    {% if carrera.estado == True %}
-        <li>carrera: {{ carrera.nombre }} -- secretario: {{carrera.secretario }}
-            -- cantidad de alumnos: {{ carrera.cantidad_alumnos }} -- estado: {{ carrera.estado }}
-            <a href=" {% url 'app_creditos:carrera_edit' carrera.pk %}">editar</a>
-            <a href=" {% url 'app_creditos:carrera_delete' carrera.pk %}">borrar</a>
-            <a href=" {% url 'app_creditos:carrera_disable' carrera.pk %}">deshabilitar</a>
-        </li>
-    {% endif %}
-{% endfor %}
-</ul>
-
+{% block main_content %}
+  <ul>
+  {% for carrera in carreras %}
+      {% if carrera.estado == True %}
+          <li>carrera: {{ carrera.nombre }} -- secretario: {{carrera.secretario }}
+              -- cantidad de alumnos: {{ carrera.cantidad_alumnos }} -- estado: {{ carrera.estado }}
+              <a href=" {% url 'app_creditos:carrera_edit' carrera.pk %}">editar</a>
+              <a href=" {% url 'app_creditos:carrera_delete' carrera.pk %}">borrar</a>
+              <a href=" {% url 'app_creditos:carrera_disable' carrera.pk %}">deshabilitar</a>
+          </li>
+      {% endif %}
+  {% endfor %}
+  </ul>
+{% endblock %}
+{% block js %}
+  {# aca va código javascript #}
+{% endblock %}
 </body>
 </html>
