@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.contrib.auth.models import User
 
 
 class Carrera(models.Model):
@@ -22,6 +21,7 @@ class Carrera(models.Model):
 class Secretario(models.Model):
     nombre = models.CharField("apellido", max_length=255)
     estado = models.BooleanField(default=True)
+    usuario = models.OneToOneField(User)
 
     class Meta:
         verbose_name = "secretario"
@@ -40,6 +40,7 @@ class Alumno(models.Model):
     mail = models.EmailField(max_length=255, null=True)
     estado = models.BooleanField(default=True)
     carrera = models.ForeignKey("Carrera", verbose_name="Carrera", related_name="Alumnos")
+    usuario = models.OneToOneField(User)
 
     class Meta:
         verbose_name = "alumno"
