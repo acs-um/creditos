@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block title %}carreras {% endblock %}
+
+{% block main_content %}
+
+<h1> {% if object.pk %}Editar{% else %}Nueva{% endif %} {{titulo}}</h1>
+
+   <form method="POST" class="post-form">{% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+{% endblock %}

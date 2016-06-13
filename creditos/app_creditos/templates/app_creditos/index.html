@@ -1,35 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-          crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <title>{%block title%}{% endblock %} - Sistema de créditos - UM</title>
-    {% block extra_head %}{% endblock %}
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>Carreras</h1>
-{% block sidebar %}
-<a href="{% url 'app_creditos:carrera_new' %}">Nueva carrera</a>
-<br>
-<a href="{% url 'app_creditos:alumno_new' %}">Nuevo alumno</a>
-<br>
-<a href="{% url 'app_creditos:alumno_list' %}">alumnos</a>
-<br>
-<a href="{% url 'app_creditos:secretario_list' %}">Secretarios</a>
-<br>
-<a href="{% url 'app_creditos:materia_list' %}">Materias</a>
-{% endblock %}
+{% load bootstrap3 %}
 
-{% if mensaje %}
-    <b>{{mensaje}}</b>
-    <p>
-{% endif %}
+{% block title %}carreras {% endblock %}
 
 {% block main_content %}
+<h1>carreras</h1>
   <ul>
   {% for carrera in carreras %}
       {% if carrera.estado == True %}
@@ -43,8 +19,4 @@
   {% endfor %}
   </ul>
 {% endblock %}
-{% block js %}
-  {# aca va código javascript #}
-{% endblock %}
-</body>
-</html>
+

@@ -33,7 +33,7 @@ def carrera_new(request):
             return redirect(reverse('app_creditos:index'))
     else:
         form = CarreraForm()
-    return render(request, 'app_creditos/carrera_new.html', {'form': form})
+    return render(request, 'app_creditos/forms_edit.html', {'form': form, 'titulo': "carrera"})
 
 
 def carrera_edit(request, pk):
@@ -46,7 +46,7 @@ def carrera_edit(request, pk):
             return redirect(reverse('app_creditos:index'))
     else:
         form = CarreraForm(instance=carr)
-    return render(request, 'app_creditos/carrera_new.html', {'form': form})
+    return render(request, 'app_creditos/forms_edit.html', {'form': form, 'object': carr, 'titulo': "carrera"})
 
 
 def carrera_delete(request, pk):

@@ -1,0 +1,63 @@
+{% load bootstrap3 static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}" />
+        <title>{% block title %}{% endblock %} - Sistema de créditos - UM</title>
+        {% block extra_head %}{% endblock %}
+    </head>
+<body>
+
+<div id="wrapper">
+    {% block sidebar %}
+    <div id="sidebar-wrapper">
+         <ul class="sidebar-nav">
+             <li class="sidebar-brand">
+                <a href="{% url 'app_creditos:carrera_new' %}">Nueva carrera</a>
+             </li>
+             <li class="sidebar-brand">
+                <a href="{% url 'app_creditos:alumno_new' %}">Nuevo alumno</a>
+             </li>
+             <li class="sidebar-brand">
+                <a href="{% url 'app_creditos:alumno_list' %}">alumnos</a>
+             </li>
+             <li class="sidebar-brand">
+                <a href="{% url 'app_creditos:secretario_list' %}">Secretarios</a>
+             </li>
+             <li class="sidebar-brand">
+                <a href="{% url 'app_creditos:materia_list' %}">Materias</a>
+             </li>
+         </ul>
+    </div>
+    {% endblock %}
+
+    {% if mensaje %}
+        <b>{{mensaje}}</b>
+    {% endif %}
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            {% bootstrap_messages %}
+
+            {% block main_content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+{% bootstrap_javascript jquery=1 %}
+
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+
+{% block js %}
+  {# aca va código javascript #}
+{% endblock %}
+</body>
+</html>
