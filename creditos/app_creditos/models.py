@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Carrera(models.Model):
     nombre = models.CharField("nombre", max_length=255, unique=True)
@@ -65,4 +63,5 @@ class Materia(models.Model):
 
     def __str__(self):
         return self.nombre
+
 
